@@ -1,6 +1,6 @@
-# Salesforce DX Project: Next Steps
+## LWC Learning Page
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+A collection of code examples for Lightning Web Components. Each recipe demonstrates how to code a specific task in the fewest lines of code possible while following best practices.  
 
 ## How Do You Plan to Deploy Your Changes?
 
