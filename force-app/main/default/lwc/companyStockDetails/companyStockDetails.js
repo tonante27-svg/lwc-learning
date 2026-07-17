@@ -1,26 +1,27 @@
-import { LightningElement ,api,track } from 'lwc';
+import { LightningElement ,api } from 'lwc';
 import getStockDetails from '@salesforce/apex/StockFitController.getStockInfo';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent'; 
 
 export default class CompanyStockDetails extends LightningElement {
     @api symbol;
-    @track sDetails;
+    sDetails;
     error;
 
+    connectedCallback(){
+        console.log('Child received symbol:', this.symbol);
+        this.loadStockDetails();
+    }
    
-    async handleStockInfo(event){
-        this.symbol = event.target.value;
-        this.symbol='AAPL'; // As a temp test.
+    async loadStockDetails(){
         try{
-            this.endpointPath = 'api/company/details?symbol='+this.symbol
-            this.sDetails = await getStockDetails ({stockSymbol: this.symbol});
+            this.sDetails = await getStockDetails ({symbol: this.symbol});
             this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Success',
-                        message: `Symbol; ${this.symbol} has been validated successfully!`,
+                        message: `Details retrieved for ${this.symbol}`,
                         variant: 'success',
                     }),
-                );
+            );
         }catch(error){
             this.error = error;
             this.sDetails = undefined;

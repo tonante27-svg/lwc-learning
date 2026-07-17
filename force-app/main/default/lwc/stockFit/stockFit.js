@@ -30,9 +30,9 @@ export default class StockFit extends LightningElement {
         console.log(`Stock Symbol is: ${this.symbol} in HandleValidate`);
         this.isSymbolValid = false;
         this.isLoading = true;
-     try {    
-            
+     try {        
             this.symbolInfo = await validateStockSymbol({ stockSymbol: this.symbol});
+            console.log('Parent sending symbol:', this.symbol);
             this.error = undefined;
             this.isSymbolValid = true;
             this.dispatchEvent(

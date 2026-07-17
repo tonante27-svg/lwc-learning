@@ -1,4 +1,5 @@
 <template>
+  <hr></hr>
   <lightning-card title="StockFit Stock Details" icon-name="custom:custom63">
    <div class="slds-grid slds-wrap">
      
@@ -7,21 +8,21 @@
           <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
             <dl class="slds-dl_inline">         
               <dt class="slds-dl_inline__label">Company Name:</dt>
-              <dd class="slds-dl_inline__label">{sDetails.name}</dd>
+              <dd>{sDetails.name}</dd>
               <dt class="slds-dl_inline__label">Series Id:</dt>
               <dd>{sDetails.seriesId}</dd>
               <dt class="slds-dl_inline__label">Stock Type:</dt>
               <dd>{sDetails.type}</dd>
               <dt class="slds-dl_inline__label">Sector:</dt>
-              <p>{sDetails.sector}</p>
+              <dd>{sDetails.sector}</dd>
               <dt class="slds-dl_inline__label">Industry:</dt>
-              <p>{sDetails.industry}</p>
+              <dd>{sDetails.industry}</dd>
               <dt class="slds-dl_inline__label">Industry Group:</dt>
-              <p>{sDetails.industryGroup}</p>
+              <dd>{sDetails.industryGroup}</dd>
               <dt class="slds-dl_inline__label">Status:</dt>
-              <p>{sDetails.status}</p>
+              <dd>{sDetails.status}</dd>
               <dt class="slds-dl_inline__label">EIN:</dt>
-              <p>{sDetails.ein}</p>
+              <dd>{sDetails.ein}</dd>
             </dl>
           </div>
           
@@ -43,7 +44,7 @@
                 </ul>
             </template>
             <template lwc:if={sDetails.priorTickers}>
-                <h2>Prior Tickets</h2>
+                <h2>Prior Tickers</h2>
                 <ul>
                     <template for:each={sDetails.priorTickers} for:item="ticket">
                         <li key={ticket.symbol}>
