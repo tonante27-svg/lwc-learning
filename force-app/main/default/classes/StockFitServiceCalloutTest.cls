@@ -69,7 +69,50 @@
         }
         Test.stopTest();
     }
+    @IsTest
+    static void testStockSymbolExistsSuccess() {
+        // Arrange - Mock successful response
+        String mockJson = '{' +
+            '"symbol": "AAPL",' +
+            '"companyName": "Apple Inc.",' +
+            '"price": 234.82' +
+        '}';
+        String endpointPath = '/api/lookup/symbol';
+        String symbol = 'AAPL';
+        
+        Test.setMock(HttpCalloutMock.class, 
+                     new StockFitServiceCalloutMock(200, mockJson));
 
+        Test.startTest();
+        Boolean result = StockFitController.stockSymbolExists(symbol,endpointPath);
+        Test.stopTest();
+
+        // Assert
+        System.assertNotEquals(null, result, 'Result should not be null');
+        System.assertEquals(true, result, 'Stock symbol should match expected value');
+    }
+    @IsTest
+    static void testStockSymbolExistsFailure() {
+        // Arrange - Mock successful response
+        String mockJson = '{' +
+            '"symbol": "AAPL",' +
+            '"companyName": "Apple Inc.",' +
+            '"price": 234.82' +
+        '}';
+        String endpointPath = '/api/lookup/symbol';
+        String symbol = 'AAGL';
+        
+        Test.setMock(HttpCalloutMock.class, 
+                     new StockFitServiceCalloutMock(200, mockJson));
+
+        Test.startTest();
+        Boolean result = StockFitController.stockSymbolExists(symbol,endpointPath);
+        Test.stopTest();
+
+        // Assert
+        System.assertNotEquals(null, result, 'Result should not be null');
+        System.assertEquals(true, result, 'Stock symbol should match expected value');
+    }
     @IsTest
     static void testGetStockInfoSuccess() {
         // Arrange - Mock successful response

@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="StockFit Company Info" icon-name="utility:search">
+        <div class="slds-var-m-around_medium">
+            <p class="slds-var-p-horizontal_small">Please Insert a Stock Symbol (Nasdad or NY)</p>
+            <lightning-input type="text" 
+            class="slds-size_1-of-6"
+            label="Symbol" 
+            value={symbol} 
+            onchange={handleSymbolChange}>
+        </lightning-input>
+        </div> 
+         <div class="slds-var-m-around_medium">
+            <p class="slds-var-p-horizontal_small">Please click button for stock info (Nasdad or NY)</p>
+            <lightning-button variant="neutral"
+            class="slds-size_1-of-6"
+            label="Validate Symbol" 
+            onclick={handleValidate}>
+            </lightning-button>
+        </div> 
+        <template lwc:if={isLoading}>
+            <lightning-spinner 
+                alternative-text="Validating stock symbol information..."
+                size="medium"
+                variant="brand">
+            </lightning-spinner>
+        </template>
+        <template if:true={isSymbolValid}>
+            <div class="slds-var-m-around_medium">
+                <c-company-stock-details symbol={symbol}></c-company-stock-details>
+            </div>
+        </template>
+    </lightning-card>
+</template>
