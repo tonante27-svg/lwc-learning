@@ -1,33 +1,50 @@
 <template>
-    <lightning-card title="StockFit Company Info" icon-name="utility:search">
-        <div class="slds-var-m-around_medium">
-            <p class="slds-var-p-horizontal_small">Please Insert a Stock Symbol (Nasdad or NY)</p>
-            <lightning-input type="text" 
-            class="slds-size_1-of-6"
-            label="Symbol" 
-            value={symbol} 
-            onchange={handleSymbolChange}>
-        </lightning-input>
-        </div> 
-         <div class="slds-var-m-around_medium">
-            <p class="slds-var-p-horizontal_small">Please click button for stock info (Nasdad or NY)</p>
-            <lightning-button variant="neutral"
-            class="slds-size_1-of-6"
-            label="Validate Symbol" 
-            onclick={handleValidate}>
+<div class="slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_6-of-12">
+  <lightning-card title="StockFit Company Info" icon-name="utility:search">
+    <div class="slds-var-p-around_medium">
+      
+      <div class="slds-form slds-form_stacked slds-var-m-bottom_large">
+        <div class="slds-form-element">
+          <div class="slds-size_1-of-1 slds-medium-size_3-of-12">
+            
+            <lightning-input 
+              type="text" 
+              label="Stock Symbol" 
+              field-level-help="Please insert a Nasdaq or NY symbol (e.g., HD)"
+              placeholder="e.g., HD"
+              value={symbol} 
+              onchange={handleSymbolChange}
+              class="slds-var-m-bottom_small">
+            </lightning-input>
+
+            <lightning-button 
+              variant="brand"
+              label="Validate Symbol" 
+              onclick={handleValidate}
+              class="slds-show_inline-block">
             </lightning-button>
-        </div> 
-        <template lwc:if={isLoading}>
-            <lightning-spinner 
-                alternative-text="Validating stock symbol information..."
-                size="medium"
-                variant="brand">
-            </lightning-spinner>
-        </template>
-        <template if:true={isSymbolValid}>
-            <div class="slds-var-m-around_medium">
-                <c-company-stock-details symbol={symbol}></c-company-stock-details>
-            </div>
-        </template>
-    </lightning-card>
+
+          </div>
+        </div>
+      </div> 
+
+      <template lwc:if={isLoading}>
+        <div class="slds-is-relative slds-var-p-vertical_large">
+          <lightning-spinner 
+            alternative-text="Validating stock symbol information..."
+            size="medium"
+            variant="brand">
+          </lightning-spinner>
+        </div>
+      </template>
+
+      <template lwc:if={isSymbolValid}>
+        <div class="slds-border_top slds-var-p-top_medium">
+          <c-company-stock-details symbol={symbol}></c-company-stock-details>
+        </div>
+      </template>
+
+    </div>
+  </lightning-card>
+  </div>
 </template>

@@ -1,69 +1,96 @@
 <template>
-  <hr></hr>
   <lightning-card title="StockFit Stock Details" icon-name="custom:custom63">
-   <div class="slds-grid slds-wrap">
-     
+    <div class="slds-var-p-around_medium">
+      
       <template lwc:if={sDetails}>
-        
-          <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
-            <dl class="slds-dl_inline">         
-              <dt class="slds-dl_inline__label">Company Name:</dt>
-              <dd>{sDetails.name}</dd>
-              <dt class="slds-dl_inline__label">Series Id:</dt>
-              <dd>{sDetails.seriesId}</dd>
-              <dt class="slds-dl_inline__label">Stock Type:</dt>
-              <dd>{sDetails.type}</dd>
-              <dt class="slds-dl_inline__label">Sector:</dt>
-              <dd>{sDetails.sector}</dd>
-              <dt class="slds-dl_inline__label">Industry:</dt>
-              <dd>{sDetails.industry}</dd>
-              <dt class="slds-dl_inline__label">Industry Group:</dt>
-              <dd>{sDetails.industryGroup}</dd>
-              <dt class="slds-dl_inline__label">Status:</dt>
-              <dd>{sDetails.status}</dd>
-              <dt class="slds-dl_inline__label">EIN:</dt>
-              <dd>{sDetails.ein}</dd>
-            </dl>
+        <div class="slds-grid slds-wrap slds-gutters">
+          
+          <!-- Left Column: Key Details -->
+          <div class="slds-col slds-size_1-of-1 slds-medium-size_7-of-12">
+            <div class="slds-grid slds-wrap slds-gutters_x-small">
+              
+              <div class="slds-col slds-size_1-of-3 slds-text-color_weak slds-text-title_bold slds-var-m-bottom_small">Company Name:</div>
+              <div class="slds-col slds-size_2-of-3 slds-var-p-bottom_small">{sDetails.name}</div>
+              
+              <div class="slds-col slds-size_1-of-3 slds-text-color_weak slds-text-title_bold slds-var-m-bottom_small">Series Id:</div>
+              <div class="slds-col slds-size_2-of-3 slds-var-p-bottom_small">{sDetails.seriesId}</div>
+              
+              <div class="slds-col slds-size_1-of-3 slds-text-color_weak slds-text-title_bold slds-var-m-bottom_small">Stock Type:</div>
+              <div class="slds-col slds-size_2-of-3 slds-var-p-bottom_small">{sDetails.type}</div>
+              
+              <div class="slds-col slds-size_1-of-3 slds-text-color_weak slds-text-title_bold slds-var-m-bottom_small">Sector:</div>
+              <div class="slds-col slds-size_2-of-3 slds-var-p-bottom_small">{sDetails.sector}</div>
+              
+              <div class="slds-col slds-size_1-of-3 slds-text-color_weak slds-text-title_bold slds-var-m-bottom_small">Industry:</div>
+              <div class="slds-col slds-size_2-of-3 slds-var-p-bottom_small">{sDetails.industry}</div>
+              
+              <div class="slds-col slds-size_1-of-3 slds-text-color_weak slds-text-title_bold slds-var-m-bottom_small">Industry Group:</div>
+              <div class="slds-col slds-size_2-of-3 slds-var-p-bottom_small">{sDetails.industryGroup}</div>
+              
+              <div class="slds-col slds-size_1-of-3 slds-text-color_weak slds-text-title_bold slds-var-m-bottom_small">Status:</div>
+              <div class="slds-col slds-size_2-of-3 slds-var-p-bottom_small">
+                <span class="slds-badge slds-theme_success">{sDetails.status}</span>
+              </div>
+               
+              <div class="slds-col slds-size_1-of-3 slds-text-color_weak slds-text-title_bold slds-var-m-bottom_small">EIN:</div>
+              <div class="slds-col slds-size_2-of-3 slds-var-p-bottom_small">{sDetails.ein}</div>
+              
+            </div>
           </div>
           
-          <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+          <!-- Right Column: Lists -->
+          <div class="slds-col slds-size_1-of-1 slds-medium-size_5-of-12 slds-border_left slds-var-p-left_large">
+            
+            <!-- Symbols -->
             <template lwc:if={sDetails.symbols}>
-            <h2>Symbols</h2>
-              <ul>
-                <template for:each={sDetails.symbols} for:item="a_symbol">
-                  <li key={a_symbol}>{a_symbol}</li>
-                </template>
-              </ul>
+              <div class="slds-var-m-bottom_medium">
+                <h3 class="slds-text-heading_small slds-var-m-bottom_x-small">Symbols</h3>
+                <div class="slds-list_inline">
+                  <template for:each={sDetails.symbols} for:item="a_symbol">
+                    <span key={a_symbol} class="slds-badge slds-var-m-right_xx-small">{a_symbol}</span>
+                  </template>
+                </div>
+              </div>
             </template>
+            
+            <!-- Former Names -->
             <template lwc:if={sDetails.formerNames}>
-                <h2>Former Names</h2>
-                <ul>
+              <div class="slds-var-m-bottom_medium">
+                <h3 class="slds-text-heading_small slds-var-m-bottom_x-small">Former Names</h3>
+                <ul class="slds-list_dotted">
                   <template for:each={sDetails.formerNames} for:item="formerName">
                     <li key={formerName}>{formerName}</li>
                   </template>
                 </ul>
+              </div>
             </template>
+            
+            <!-- Prior Tickers -->
             <template lwc:if={sDetails.priorTickers}>
-                <h2>Prior Tickers</h2>
-                <ul>
-                    <template for:each={sDetails.priorTickers} for:item="ticket">
-                        <li key={ticket.symbol}>
-                          <dt> Symbol</dt>
-                          <dd>{ticket.symbol}</dd>
-                          <dt>Exchange</dt>
-                          <dd>{ticket.exchange}</dd>
-                          <dt>Seen</dt> 
-                          <dd>{ticket.lastSeen}</dd>
-                        </li>
-                    </template>
-                </ul>
+              <div>
+                <h3 class="slds-text-heading_small slds-var-m-bottom_x-small">Prior Tickers</h3>
+                <div class="slds-grid slds-wrap">
+                  <template for:each={sDetails.priorTickers} for:item="ticket">
+                    <article key={ticket.symbol} class="slds-tile slds-hint-parent slds-var-p-around_x-small slds-box slds-var-m-bottom_x-small slds-size_1-of-1">
+                      <div class="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
+                        <h3 class="slds-tile__title slds-truncate" title="Symbol">
+                          <strong>Symbol:</strong> {ticket.symbol}
+                        </h3>
+                        <span>{ticket.lastSeen}</span>
+                      </div>
+                      <div class="slds-tile__detail">
+                        <p class="slds-truncate" title="Exchange">Exchange: {ticket.exchange}</p>
+                      </div>
+                    </article>
+                  </template>
+                </div>
+              </div>
             </template>
+            
           </div>
-       
+        </div>
       </template>
-     <!-- <template lwc:if={error}>
-        <c-error-panel errors={error}></c-error-panel>
-      </template>-->
+
     </div>
   </lightning-card>
- </template> 
+</template>
