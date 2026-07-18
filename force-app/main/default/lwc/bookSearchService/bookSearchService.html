@@ -1,0 +1,47 @@
+<template>
+<div class="slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_6-of-12">
+  <lightning-card title="StockFit Company Info" icon-name="utility:search">
+    <div class="slds-var-p-around_medium">
+      
+      <div class="slds-form slds-form_stacked slds-var-m-bottom_large">
+        <div class="slds-form-element">
+          <div class="slds-size_1-of-1 slds-medium-size_3-of-12">
+            <lightning-input
+              type="text" 
+              label="Book Name" 
+              field-level-help="Please Enter A Book Name"
+              placeholder="e.g., Catcher in The Rye"
+              value={bookName} 
+              onchange={handleBookNameChange}
+              class="slds-var-m-bottom_small">
+            </lightning-input>
+          </div>
+          <div class="slds-size_1-of-1 slds-medium-size_3-of-12">
+            <lightning-button
+              variant="neutral" 
+              label="Validate Book"
+              onclick={handleBookNameValidation}
+              class="slds-var-m-bottom_small">
+            </lightning-button>
+          </div>
+        </div>
+      </div> 
+      <template lwc:if={isLoading}>
+        <div class="slds-is-relative slds-var-p-vertical_large">
+          <lightning-spinner 
+            alternative-text="Validating book name information..."
+            size="medium"
+            variant="brand">
+          </lightning-spinner>
+        </div>
+      </template>
+      <template lwc:if={isBookNameValid}>
+        <div class="slds-border_top slds-var-p-top_medium">
+          <c-show-book-details bookname={bookName}></c-show-book-details>
+        </div>
+      </template>
+
+    </div>
+  </lightning-card>
+  </div>
+</template>
