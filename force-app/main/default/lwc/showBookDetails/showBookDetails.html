@@ -3,7 +3,7 @@
     <div class="slds-var-p-around_medium">
         <template lwc:if={bookContents.docs.length}> 
             <div> 
-                <h3 class="slds-text-heading_small slds-var-m-bottom_x-small">Prior Tickers</h3> 
+                <h3 class="slds-text-heading_small slds-var-m-bottom_x-small">Related Book Info</h3> 
                 <div class="slds-grid slds-wrap"> 
                     
                     <template for:each={bookContents.docs} for:item="doc"> 
@@ -25,25 +25,27 @@
                             <p>First Publish: {doc.first_publish_year}</p> 
                             <p>Has Full Text: {doc.has_fulltext}</p> 
 
-                            <!-- 1B. Loop through IA  dynamically -->
+                            <!-- 1B. Loop through IA  dynamically 
                             <template lwc:if={doc.mapped_ia}>
                                 <template for:each={doc.mapped_ia} for:item="ia"> 
                                     <p key={ia.uniqueKey}>IA: {ia.value}</p> 
                                 </template>
-                            </template>
-                            <!-- 2. Loop through IA Collections dynamically -->
-                            <template lwc:if={doc.mapped_ia_collection}>
-                                <template for:each={doc.mapped_ia_collection} for:item="collection"> 
-                                    <p key={collection.uniqueKey}>IA Collection: {collection.value}</p> 
-                                </template>
-                            </template>
-
-                            <!-- 3. Loop through Languages dynamically -->
+                            </template>-->
+                           
+                            <!-- 2. Loop through Languages dynamically 
                             <template lwc:if={doc.mapped_language}>
                                 <template for:each={doc.mapped_language} for:item="language"> 
                                     <p key={language.uniqueKey}>Language: {language.value}</p> 
                                 </template> 
-                            </template>
+                            </template> -->
+
+                            <!-- 2. Loop through IA Collections dynamically 
+                            <template lwc:if={doc.mapped_ia_collection}>
+                                <template for:each={doc.mapped_ia_collection} for:item="collection"> 
+                                    <p key={collection.uniqueKey}>IA Collection: {collection.value}</p> 
+                                </template>
+                            </template>-->
+
                             <!--More  Static attributes are still safely rendered -->
                             <p>Lending Edition S: {doc.lending_edition_s}</p>
                             <p>Lending Identifier: {doc.lending_identifier_s}</p>
