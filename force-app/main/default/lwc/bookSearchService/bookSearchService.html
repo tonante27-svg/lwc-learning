@@ -1,6 +1,6 @@
 <template>
 <div class="slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_6-of-12">
-  <lightning-card title="StockFit Company Info" icon-name="utility:search">
+  <lightning-card title="Boo Search Info" icon-name="utility:search">
     <div class="slds-var-p-around_medium">
       
       <div class="slds-form slds-form_stacked slds-var-m-bottom_large">
@@ -37,7 +37,7 @@
       </template>
       <template lwc:if={isBookNameValid}>
         <div class="slds-border_top slds-var-p-top_medium">
-          <c-show-book-details bookname={bookName}></c-show-book-details>
+          <c-show-book-details selected-book-name={processedName}></c-show-book-details>
         </div>
       </template>
 

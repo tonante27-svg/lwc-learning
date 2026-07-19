@@ -1,6 +1,60 @@
 <template>
-    <div class="slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_6-of-12">
-    <lightning-card title="Book Info" icon-name="utility:search">
-    </lightning-card>
+  <lightning-card title="Show Book Details" icon-name="custom:custom63">
+    <div class="slds-var-p-around_medium">
+        <template lwc:if={bookContents.docs.length}> 
+            <div> 
+                <h3 class="slds-text-heading_small slds-var-m-bottom_x-small">Prior Tickers</h3> 
+                <div class="slds-grid slds-wrap"> 
+                    
+                    <template for:each={bookContents.docs} for:item="doc"> 
+                        <div key={doc.key} class="book-container slds-box slds-var-m-around_small"> 
+                            <h2>{doc.title}</h2> 
+                            
+                            <!-- 1. Loop through authors dynamically -->
+                            <template lwc:if={doc.mapped_author_name}>
+                                <template for:each={doc.mapped_author_name} for:item="author"> 
+                                    <p key={author.uniqueKey}>Author: {author.value}</p> 
+                                </template> 
+                            </template>
+                            
+                            <!-- Static attributes are still safely rendered -->
+                            <p>Cover Edition Key: {doc.cover_edition_key}</p>
+                            <p>Cover I: {doc.cover_i}</p>
+                            <p>Ebook Access: {doc.ebook_access}</p>
+                            <p>Edition Count: {doc.edition_count}</p>
+                            <p>First Publish: {doc.first_publish_year}</p> 
+                            <p>Has Full Text: {doc.has_fulltext}</p> 
+
+                            <!-- 1B. Loop through IA  dynamically -->
+                            <template lwc:if={doc.mapped_ia}>
+                                <template for:each={doc.mapped_ia} for:item="ia"> 
+                                    <p key={ia.uniqueKey}>IA: {ia.value}</p> 
+                                </template>
+                            </template>
+                            <!-- 2. Loop through IA Collections dynamically -->
+                            <template lwc:if={doc.mapped_ia_collection}>
+                                <template for:each={doc.mapped_ia_collection} for:item="collection"> 
+                                    <p key={collection.uniqueKey}>IA Collection: {collection.value}</p> 
+                                </template>
+                            </template>
+
+                            <!-- 3. Loop through Languages dynamically -->
+                            <template lwc:if={doc.mapped_language}>
+                                <template for:each={doc.mapped_language} for:item="language"> 
+                                    <p key={language.uniqueKey}>Language: {language.value}</p> 
+                                </template> 
+                            </template>
+                            <!--More  Static attributes are still safely rendered -->
+                            <p>Lending Edition S: {doc.lending_edition_s}</p>
+                            <p>Lending Identifier: {doc.lending_identifier_s}</p>
+                            <p>Public Scan B: {doc.public_scan_b}</p>
+
+                        </div> 
+                    </template>
+
+                </div> 
+            </div> 
+        </template>
     </div>
+    </lightning-card>
 </template>

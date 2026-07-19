@@ -19,7 +19,8 @@ public with sharing class BookSearchService {
      */
     @AuraEnabled
     public static String processBookName(String bookName){
-        
+        System.debug('Entered processBookName');
+        System.debug(bookName);
         boolean isValidName  = false;
         isValidName = validateInput(bookName);
         if(isValidName){
@@ -65,12 +66,13 @@ public with sharing class BookSearchService {
      * @return a Map representation of the JSON response
      * @throws AuraHandledException when the HTTP callout fails
      */
+    @AuraEnabled
     public static Map<String, Object> fetchBookInfo(String bookName){
         //Validate that bookName and endpoint ar not empty
         //Set up requst object
         HttpRequest req = new HttpRequest();
         req.setEndpoint(
-            'callout:Stock_Fit_API/api/company/details?symbol=' +
+            'callout:Open_Library_API/search.json?q=' +
             EncodingUtil.urlEncode(bookName, 'UTF-8'));
         req.setMethod('GET');
         HttpResponse resp = new Http().send(req);
